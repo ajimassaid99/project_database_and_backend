@@ -39,6 +39,19 @@ $routes->get('blocked', 'Welcome::forbiddenPage');
 $routes->get('register', 'Welcome::register');
 $routes->post('register', 'Welcome::registration');
 $routes->get('home', 'Home::index');
+$routes->get('shift', 'Shift::index');
+$routes->post('shift', 'Shift::createShifts');
+$routes->delete('shift', 'Shift::deleteShifts');
+$routes->get('barang', 'Barang::index');
+$routes->post('barang', 'Barang::createBarang');
+$routes->delete('barang', 'Barang::deleteBarang');
+$routes->post('produksi/checkBarcode', 'Produksi::checkBarcode');
+$routes->get('reportOperator', 'Produksi::getIndex');
+$routes->Post('reportOperator', 'Report::createReport');
+$routes->get('report/getReportByProduksiId/(:num)', 'Report::getReportByProduksiId/$1');
+$routes->post('produksi/getGrafikData', 'Home::getGrafikData');
+$routes->post('produksi/updateStatusProduksi', 'Produksi::updateStatusProduksi');
+
 
 // Setting Routes
 $routes->get('users/userRoleAccess', 'Users::userRoleAccess');

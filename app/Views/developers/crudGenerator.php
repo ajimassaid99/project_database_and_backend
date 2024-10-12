@@ -1,23 +1,23 @@
 <?= $this->extend('layouts/main'); ?>
 <?= $this->section('content'); ?>
 <style>
-    code {
-        background-color: #F5F7FB;
+code {
+    background-color: #F5F7FB;
 
-        border-radius: 0.3rem;
-        padding: 4px 5px 5px;
-        white-space: nowrap;
-    }
+    border-radius: 0.3rem;
+    padding: 4px 5px 5px;
+    white-space: nowrap;
+}
 
-    pre code {
-        white-space: inherit;
-    }
+pre code {
+    white-space: inherit;
+}
 
-    pre {
-        background-color: #F5F7FB;
-        padding: 5px;
-        border-radius: 0.3em;
-    }
+pre {
+    background-color: #F5F7FB;
+    padding: 5px;
+    border-radius: 0.3em;
+}
 </style>
 <h1 class="h3 mb-3"><strong><?= $title; ?></strong> Menu </h1>
 <div class="row">
@@ -33,7 +33,8 @@
                         <select class="form-select" name="menu" required>
                             <option value="">-- Select Menu --</option>
                             <?php foreach ($Tables as $tables) : ?>
-                                <option value="<?= $tables; ?>" <?= ($menu == $tables) ? 'selected' : ''; ?>><?= $tables; ?></option>
+                            <option value="<?= $tables; ?>" <?= ($menu == $tables) ? 'selected' : ''; ?>><?= $tables; ?>
+                            </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -42,7 +43,8 @@
                         <select class="form-select" name="table" required>
                             <option value="">-- Select Table --</option>
                             <?php foreach ($Tables as $tables) : ?>
-                                <option value="<?= $tables; ?>" <?= ($tableName == $tables) ? 'selected' : ''; ?>><?= $tables; ?></option>
+                            <option value="<?= $tables; ?>" <?= ($tableName == $tables) ? 'selected' : ''; ?>>
+                                <?= $tables; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -51,19 +53,23 @@
                         <label for="" class="fw-bold">Generate Function</label>
                         <div class="input-group mt-2 ">
                             <div class="form-check form-check-inline ms-3">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="create" value="1" <?= ($create == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="create"
+                                    value="1" <?= ($create == 1) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="inlineCheckbox1">Create</label>
                             </div>
                             <div class="form-check form-check-inline ms-3">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="read" value="1" <?= ($read == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="read"
+                                    value="1" <?= ($read == 1) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="inlineCheckbox2">Read</label>
                             </div>
                             <div class="form-check form-check-inline ms-3">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="update" value="1" <?= ($update == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="update"
+                                    value="1" <?= ($update == 1) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="inlineCheckbox3">Update</label>
                             </div>
                             <div class="form-check form-check-inline ms-3">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="delete" value="1" <?= ($delete == 1) ? 'checked' : ''; ?>>
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="delete"
+                                    value="1" <?= ($delete == 1) ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="inlineCheckbox3">Delete</label>
                             </div>
                         </div>
@@ -73,7 +79,8 @@
                         <div class="input-group mt-2 ">
                             <select class="form-select" name="file" required>
                                 <option value="">-- Select File --</option>
-                                <option value="controller" <?= ($file == 'controller') ? 'selected' : ''; ?>>Controller</option>
+                                <option value="controller" <?= ($file == 'controller') ? 'selected' : ''; ?>>Controller
+                                </option>
                                 <option value="model" <?= ($file == 'model') ? 'selected' : ''; ?>>Model</option>
                                 <option value="view" <?= ($file == 'view') ? 'selected' : ''; ?>>View</option>
                             </select>
@@ -95,16 +102,16 @@
             </div>
             <div class="card-body">
                 <?php
-                $functionName   = str_replace(' ', '', ucwords(strtolower(str_replace('_', ' ', $tableName))));
-                $modelName      = str_replace(' ', '', ucwords(strtolower(str_replace('_', ' ', $menu))));
-                $title          = ucwords(strtolower(str_replace('_', ' ', $menu)));
-
+               $functionName = str_replace(' ', '', ucwords(strtolower(str_replace('_', ' ', $tableName ?? ''))));
+               $modelName = str_replace(' ', '', ucwords(strtolower(str_replace('_', ' ', $menu ?? ''))));
+               $title = ucwords(strtolower(str_replace('_', ' ', $menu ?? '')));
+               
                 ?>
 
                 <?php if ($file == 'controller') : ?>
-                    <h5 class="fw-bold"> Constructor</h5>
-                    <hr>
-                    <pre>
+                <h5 class="fw-bold"> Constructor</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
     function __construct()
     {
@@ -112,11 +119,11 @@
     }
                 </code>
                 </pre>
-                    <hr>
-                    <?php if ($read) : ?>
-                        <h5 class="fw-bold"> Read</h5>
-                        <hr>
-                        <pre>
+                <hr>
+                <?php if ($read) : ?>
+                <h5 class="fw-bold"> Read</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
     public function index()
     {
@@ -128,12 +135,12 @@
     }
                 </code>
                 </pre>
-                        <hr>
-                    <?php endif; ?>
-                    <?php if ($create) : ?>
-                        <h5 class="fw-bold"> Insert</h5>
-                        <hr>
-                        <pre>
+                <hr>
+                <?php endif; ?>
+                <?php if ($create) : ?>
+                <h5 class="fw-bold"> Insert</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
     public function create<?= $functionName; ?>()
     {
@@ -148,12 +155,12 @@
     }
                     </code>
                 </pre>
-                        <hr>
-                    <?php endif; ?>
-                    <?php if ($update) : ?>
-                        <h5 class="fw-bold"> Update</h5>
-                        <hr>
-                        <pre>
+                <hr>
+                <?php endif; ?>
+                <?php if ($update) : ?>
+                <h5 class="fw-bold"> Update</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
         public function update<?= $functionName; ?>()
         {
@@ -168,12 +175,12 @@
         }
                 </code>
                 </pre>
-                        <hr>
-                    <?php endif; ?>
-                    <?php if ($delete) : ?>
-                        <h5 class="fw-bold"> Delete</h5>
-                        <hr>
-                        <pre>
+                <hr>
+                <?php endif; ?>
+                <?php if ($delete) : ?>
+                <h5 class="fw-bold"> Delete</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
 
         public function delete<?= $functionName ?>($<?= $functionName ?>ID)
@@ -192,13 +199,13 @@
         }
                     </code>
                 </pre>
-                    <?php endif; ?>
+                <?php endif; ?>
 
                 <?php elseif ($file == 'model') : ?>
-                    <?php if ($read) : ?>
-                        <h5 class="fw-bold"> Read</h5>
-                        <hr>
-                        <pre>
+                <?php if ($read) : ?>
+                <h5 class="fw-bold"> Read</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
     public function get<?= $functionName ?>($<?= $functionName ?>ID = false)
     {
@@ -213,12 +220,12 @@
     }
                 </code>
                 </pre>
-                        <hr>
-                    <?php endif; ?>
-                    <?php if ($create) : ?>
-                        <h5 class="fw-bold"> Insert</h5>
-                        <hr>
-                        <pre>
+                <hr>
+                <?php endif; ?>
+                <?php if ($create) : ?>
+                <h5 class="fw-bold"> Insert</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
     public function create<?= $functionName ?>($data<?= $functionName ?>)
     {
@@ -228,12 +235,12 @@
     }
                     </code>
                 </pre>
-                        <hr>
-                    <?php endif; ?>
-                    <?php if ($update) : ?>
-                        <h5 class="fw-bold"> Update</h5>
-                        <hr>
-                        <pre>
+                <hr>
+                <?php endif; ?>
+                <?php if ($update) : ?>
+                <h5 class="fw-bold"> Update</h5>
+                <hr>
+                <pre>
                 <code class="text-primary">
     public function update<?= $functionName ?>($data<?= $functionName ?>)
     {
@@ -243,13 +250,13 @@
     }
                 </code>
                 </pre>
-                        <hr>
-                    <?php endif; ?>
-                    <?php if ($delete) : ?>
-                        <h5 class="fw-bold"> Delete</h5>
-                        <hr>
+                <hr>
+                <?php endif; ?>
+                <?php if ($delete) : ?>
+                <h5 class="fw-bold"> Delete</h5>
+                <hr>
 
-                        <pre>
+                <pre>
                 <code class="text-primary">
 
     public function delete<?= $functionName ?>($<?= $functionName ?>ID)
@@ -259,11 +266,11 @@
 
                 </code>
                 </pre>
-                    <?php endif; ?>
+                <?php endif; ?>
                 <?php elseif ($file == 'view') : ?>
-                    <h5 class="fw-bold"> Form</h5>
-                    <hr>
-                    <pre>
+                <h5 class="fw-bold"> Form</h5>
+                <hr>
+                <pre>
                         <code class="text-primary">
     &lt;form action=&quot;&lt;?= base_url('create<?= $functionName; ?>'); ?&gt;&quot; method=&quot;post&quot;&gt;
         <?php foreach ($Fields as $field) : ?>&lt;div class=&quot;form-group&quot;&gt;
@@ -276,9 +283,9 @@
     &lt;/form&gt;
                         </code>
                     </pre>
-                    <h5 class="fw-bold"> List</h5>
-                    <hr>
-                    <pre>
+                <h5 class="fw-bold"> List</h5>
+                <hr>
+                <pre>
                         <code class="text-primary">
     &lt;table class=&quot;table&quot;&gt;
         &lt;thead&gt; <br><?php foreach ($Fields as $field) : ?>           &lt;th&gt;<?= ucwords(strtolower(str_replace('_', ' ',  $field->name))); ?>&lt;/th&gt; <br><?php endforeach; ?>         &lt;/thead&gt;
